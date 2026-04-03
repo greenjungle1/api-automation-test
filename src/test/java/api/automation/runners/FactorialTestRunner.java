@@ -15,5 +15,5 @@ import io.cucumber.testng.CucumberOptions;
         },
         monochrome = true
 )
-public class FactorialTestRunner {
+public class FactorialTestRunner extends AbstractTestNGCucumberTests {
 }
