@@ -96,6 +96,8 @@
                     <systemPropertyVariables>
                         <base.url>${base.url}</base.url>
                     </systemPropertyVariables>
+                    <!-- Allow tests to fail without stopping report generation -->
+                    <testFailureIgnore>true</testFailureIgnore>
                     <failIfNoSpecifiedTests>false</failIfNoSpecifiedTests>
                 </configuration>
             </plugin>
