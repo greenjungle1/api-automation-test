@@ -1,61 +1,47 @@
 name: Factorial API Tests
 
-# Triggers — runs on every push and pull request to main or develop
 on:
   push:
-    branches: [ "main", "develop" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "main", "develop" ]
+    branches: [ "main" ]
 
-# Required permissions for GitHub Pages deployment
 permissions:
   contents: write
   pages: write
 
 jobs:
   test:
-    name: Run Cucumber API Tests
     runs-on: ubuntu-latest
 
     steps:
-
-      # 1. Checkout the code
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2. Set up Java 11
-      - name: Set up JDK 11
+      - name: Set up Java 11
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 11
           cache: maven
 
-      # 3. Run the tests
-      # generates target/cucumber-reports/cucumber.html and target/cucumber.json
       - name: Run tests
         run: mvn test --no-transfer-progress -B
 
-      # 4. Upload Cucumber HTML report as a downloadable artifact
-      # Available at: GitHub → Actions → click the run → Artifacts
-      - name: Upload Cucumber report as artifact
+      - name: Upload report
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: cucumber-report
           path: target/cucumber-reports/cucumber.html
-          retention-days: 30
 
-      # 5. Publish Cucumber HTML report to GitHub Pages
-      # Accessible at: https://greenjungle1.github.io/api-automation-test/
-      # No login required — shareable with anyone
-      - name: Copy report to docs folder
+      - name: Publish report to GitHub Pages
         if: always()
         run: |
           mkdir -p docs
           cp target/cucumber-reports/cucumber.html docs/index.html
 
-      - name: Deploy report to GitHub Pages
+      - name: Deploy to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
