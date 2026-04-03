@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e584d6f5-1ead-4f4b-bde4-d8f20edee7da" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3BntQUw6t2bYEOCI00BSOzAMFTS" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Cucumber Java.Scenario: .executor": "Run",
+    "Cucumber Java.Scenario: Contact Validation for Factorial Endpoint.executor": "Run",
+    "Cucumber Java.Scenario: Error message text matches what UI expects.executor": "Run",
+    "Cucumber Java.Scenario: Factorial of 0 returns 1.executor": "Run",
+    "Cucumber Java.Scenario: Factorial of 1 returns 1.executor": "Run",
+    "Cucumber Java.Scenario: Factorial of 171 returns null instead of a valid integer — BUG-003.executor": "Run",
+    "Cucumber Java.Scenario: Factorial of 171 should not return Infinity — BUG-003.executor": "Run",
+    "Cucumber Java.Scenario: Factorial of large positive integers returns a valid finite integer.executor": "Run",
+    "Cucumber Java.Scenario: Factorial of large positive integers.executor": "Run",
+    "Cucumber Java.Scenario: Factorial of lowest positive integer.executor": "Run",
+    "Cucumber Java.Scenario: Factorial of small positive integers returns correct result.executor": "Run",
+    "Cucumber Java.Scenario: Factorial of small positive integers.executor": "Run",
+    "Cucumber Java.Scenario: GET request should be rejected with 405 Method Not Allowed — BUG-005.executor": "Run",
+    "Cucumber Java.Scenario: Invalid parameter type returns an error response.executor": "Run",
+    "Cucumber Java.Scenario: Missing parameter should return HTTP 400 — BUG-004.executor": "Run",
+    "Cucumber Java.Scenario: Missing required number parameter returns an error response.executor": "Run",
+    "Cucumber Java.Scenario: Negative integer should return an error — BUG-001.executor": "Run",
+    "Cucumber Java.Scenario: Response Content-Type is always application/json.executor": "Run",
+    "Cucumber Java.Scenario: Submitting an invalid value returns an error in the answer field.executor": "Run",
+    "Cucumber Java.Scenario: Test1.executor": "Run",
+    "Cucumber Java.Scenario: Unsupported HTTP methods should be rejected with 405 Method Not Allowed.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "main",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/indu/Downloads/fractional-api-automation-test",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "/Users/indu/IdeaProjects/fractional-api-automation-test/src/main/java/org/example/Main.java",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/test/java/features" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Cucumber Java.Scenario: Factorial of lowest positive integer">
+    <configuration name="Scenario: Factorial of large positive integers returns a valid finite integer" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+      <option name="CUCUMBER_CORE_VERSION" value="7" />
+      <option name="FILE_PATH" value="$PROJECT_DIR$/src/test/java/api/automation/features/factorial.feature" />
+      <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
+      <module name="api-automation-test" />
+      <option name="NAME_FILTER" value="^Factorial of large positive integers returns a valid finite integer$" />
+      <option name="PROGRAM_PARAMETERS" value=" --plugin teamcity --name &quot;^Factorial of large positive integers returns a valid finite integer$&quot;" />
+      <option name="SUGGESTED_NAME" value="Scenario: Factorial of large positive integers returns a valid finite integer" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.cucumber.core.cli.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Scenario: Factorial of lowest positive integer" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+      <option name="CUCUMBER_CORE_VERSION" value="7" />
+      <option name="FILE_PATH" value="$PROJECT_DIR$/src/test/java/api/automation/features/factorial.feature" />
+      <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
+      <module name="api-automation-test" />
+      <option name="NAME_FILTER" value="^Factorial of lowest positive integer$" />
+      <option name="PROGRAM_PARAMETERS" value=" --plugin teamcity --name &quot;^Factorial of lowest positive integer$&quot;" />
+      <option name="SUGGESTED_NAME" value="Scenario: Factorial of lowest positive integer" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.cucumber.core.cli.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Scenario: Invalid parameter type returns an error response" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+      <option name="CUCUMBER_CORE_VERSION" value="7" />
+      <option name="FILE_PATH" value="$PROJECT_DIR$/src/test/java/api/automation/features/factorial.feature" />
+      <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
+      <module name="api-automation-test" />
+      <option name="NAME_FILTER" value="^Invalid parameter type returns an error response$" />
+      <option name="PROGRAM_PARAMETERS" value=" --plugin teamcity --name &quot;^Invalid parameter type returns an error response$&quot;" />
+      <option name="SUGGESTED_NAME" value="Scenario: Invalid parameter type returns an error response" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.cucumber.core.cli.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Scenario: Missing required number parameter returns an error response" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+      <option name="CUCUMBER_CORE_VERSION" value="7" />
+      <option name="FILE_PATH" value="$PROJECT_DIR$/src/test/java/api/automation/features/factorial.feature" />
+      <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
+      <module name="api-automation-test" />
+      <option name="NAME_FILTER" value="^Missing required number parameter returns an error response$" />
+      <option name="PROGRAM_PARAMETERS" value=" --plugin teamcity --name &quot;^Missing required number parameter returns an error response$&quot;" />
+      <option name="SUGGESTED_NAME" value="Scenario: Missing required number parameter returns an error response" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.cucumber.core.cli.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Scenario: Unsupported HTTP methods should be rejected with 405 Method Not Allowed" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+      <option name="CUCUMBER_CORE_VERSION" value="7" />
+      <option name="FILE_PATH" value="$PROJECT_DIR$/src/test/java/api/automation/features/factorial.feature" />
+      <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
+      <module name="api-automation-test" />
+      <option name="NAME_FILTER" value="^Unsupported HTTP methods should be rejected with 405 Method Not Allowed$" />
+      <option name="PROGRAM_PARAMETERS" value=" --plugin teamcity --name &quot;^Unsupported HTTP methods should be rejected with 405 Method Not Allowed$&quot;" />
+      <option name="SUGGESTED_NAME" value="Scenario: Unsupported HTTP methods should be rejected with 405 Method Not Allowed" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.cucumber.core.cli.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="api-automation-test" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="api-automation-test" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Cucumber Java.Scenario: Factorial of lowest positive integer" />
+        <item itemvalue="Cucumber Java.Scenario: Factorial of large positive integers returns a valid finite integer" />
+        <item itemvalue="Cucumber Java.Scenario: Unsupported HTTP methods should be rejected with 405 Method Not Allowed" />
+        <item itemvalue="Cucumber Java.Scenario: Invalid parameter type returns an error response" />
+        <item itemvalue="Cucumber Java.Scenario: Missing required number parameter returns an error response" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e584d6f5-1ead-4f4b-bde4-d8f20edee7da" name="Changes" comment="" />
+      <created>1775136645906</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1775136645906</updated>
+      <workItem from="1775136646950" duration="1107000" />
+      <workItem from="1775211063659" duration="272000" />
+      <workItem from="1775211345171" duration="1903000" />
+      <workItem from="1775213257481" duration="19456000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/api/automation/Main.java</url>
+          <line>13</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
