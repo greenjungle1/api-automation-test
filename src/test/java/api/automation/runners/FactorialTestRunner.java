@@ -6,7 +6,6 @@ import io.cucumber.testng.CucumberOptions;
 @CucumberOptions(
         features   = "src/test/java/api/automation/features",
         glue       = {"api.automation.steps", "api.automation.hooks"},
-        tags       = "not @ignore",
         plugin     = {
                 "pretty",
                 "summary",
