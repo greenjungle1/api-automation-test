@@ -30,11 +30,16 @@ Feature: Factorial Calculator API
       | 991    |
 
   @regression
-  Scenario: Validate number with leading zero is accepted and returns factorial
-    When  I POST the factorial of 007
-    Then  the response status code should be 200
-    And   the response content-type should be JSON
-    And   the answer field should equal 5040
+  Scenario Outline: Validate number with leading zero is accepted and returns correct factorial
+    When I POST the factorial with value "<number>"
+    Then the response status code should be 200
+    And  the response content-type should be JSON
+    And  the answer field should equal <expected>
+
+    Examples:
+      | number | expected |
+      | 007    | 5040     |
+      | 05     | 120      |
 
   @negative @error-handling @regression
   Scenario Outline: Submitting an invalid value returns an error in the answer field
@@ -51,6 +56,7 @@ Feature: Factorial Calculator API
       | !@#$    |
       | 5abc    |
       | [space] |
+      | 1 5     |
 
   # ===========================================================================
   # CONTRACT TESTS
@@ -92,6 +98,7 @@ Feature: Factorial Calculator API
     When I POST the factorial with value "<value>"
     Then the response status code should be 200
     And  the answer field should contain an error message
+
     Examples:
       | value |
       | -1    |
@@ -106,6 +113,7 @@ Feature: Factorial Calculator API
   Scenario Outline: Validate POST request with wrong parameter name is rejected
     When I POST the factorial with parameter name "<paramName>" and value "5"
     Then the response status code should be 400
+
     Examples:
       | paramName |
       | Number    |
@@ -116,6 +124,7 @@ Feature: Factorial Calculator API
   Scenario Outline: Validate unsupported HTTP methods
     When I send a "<method>" request to the factorial endpoint
     Then the response status code should be 405
+
     Examples:
       | method |
       | GET    |
