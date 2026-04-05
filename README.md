@@ -1,37 +1,42 @@
 # Factorial API Automation Test
 
-REST-Assured + Cucumber BDD + TestNG test suite for the Factorial Calculator at https://qainterview.pythonanywhere.com
+REST-Assured + Cucumber BDD + TestNG API test suite for:
+**https://qainterview.pythonanywhere.com**
 
+GitHub Actions runs tests on every push and publishes the report to:
+**https://greenjungle1.github.io/api-automation-test/**
+
+---
 
 ## Endpoint Discovered
 
-Found by inspecting the page source HTML:
+Found by inspecting the page source HTML
 
 ```javascript
 type: 'POST'
 url:  '/factorial'
-data: { 'number': number }        // form body — not query string
-response field: factorial.answer  // JSON key is "answer"
+data: { 'number': number }   // form body — not query string
+factorial.answer             // response field is "answer"
 ```
 
-| Property       | Value                                              |
-|----------------|----------------------------------------------------|
-| Method         | `POST`                                             |
-| URL            | `https://qainterview.pythonanywhere.com/factorial` |
-| Content-Type   | `application/x-www-form-urlencoded`                |
-| Parameter      | `number` (integer)                                 |
-| Success        | `{ "answer": 120 }` HTTP 200                       |
-| Auth           | None                                               |
+| Property     | Value                                              |
+|--------------|----------------------------------------------------|
+| Method       | `POST`                                             |
+| URL          | `https://qainterview.pythonanywhere.com/factorial` |
+| Content-Type | `application/x-www-form-urlencoded`                |
+| Parameter    | `number` (integer)                                 |
+| Success      | `{ "answer": 120 }`                                |
+| Auth         | None                                               |
 
 ---
 
 ## Quick Start
 
-**Prerequisites:** Java 11+, Maven 3.8+
+**Prerequisites:** Java 11+, Maven 3.8+, TestNG 
 
 ```bash
-git clone https://github.com/<your-username>/fractional-api-automation-test.git
-cd fractional-api-automation-test
+git clone https://github.com/greenjungle1/api-automation-test.git
+cd api-automation-test
 mvn test
 ```
 
@@ -40,13 +45,11 @@ mvn test
 ## Running Tests
 
 ```bash
-mvn test                                            # all scenarios
-mvn test -Dcucumber.filter.tags="@sanity"           # sanity only
-mvn test -Dcucumber.filter.tags="@regression"       # regression
-mvn test -Dcucumber.filter.tags="@negative"         # negative paths
-mvn test -Dcucumber.filter.tags="@contract"         # contract checks
-mvn test -Dcucumber.filter.tags="@bug"              # known bugs (expected to fail)
-mvn test -Dbase.url=http://localhost:6464           # local instance
+mvn test                                          # all scenarios
+mvn test -Dcucumber.filter.tags="@sanity"         # sanity only
+mvn test -Dcucumber.filter.tags="@regression"     # regression
+mvn test -Dcucumber.filter.tags="@negative"       # negative paths
+mvn test -Dcucumber.filter.tags="@contract"       # contract checks
 ```
 
 Reports generated at `target/cucumber-reports/cucumber.html`
@@ -55,41 +58,54 @@ Reports generated at `target/cucumber-reports/cucumber.html`
 
 ## Test Coverage
 
-| Tag | What it covers |
-|-----|----------------|
-| `@sanity` | `0`, `1`, `5` — is the API alive and correct? |
-| `@regression` | Large numbers — `555`, `991` |
-| `@negative` | Invalid inputs — strings, decimals, empty, whitespace |
-| `@contract` | Response structure — fields, content-type, error messages, HTTP methods |
-| `@bug` | Known defects — expected to fail until fixed |
+| Tag | What it covers                                                                 |
+|-----|--------------------------------------------------------------------------------|
+| `@sanity` | Core happy path — is the API alive and returning correct results?              |
+| `@regression` | Full coverage — all passing scenarios                                          |
+| `@negative` | Invalid inputs — strings, decimals, empty, whitespace, negative numbers        |
+| `@contract` | Response structure, content-type, error messages, HTTP methods, parameter name |
+| `@bug` | Known defects — expected to fail until fixed                                   |
 
 ---
 
-## Findings
+## Testing Approach
 
-### Bugs
+### Exploration
+1. Loaded the app in a browser and clicked Calculate with various inputs
+2. Opened DevTools → Network tab to observe the XHR call
+3. Inspected the raw page HTML source — discovered the endpoint is `POST /factorial` with form body `number=value` and response field `answer`
+4. Tested boundary values, edge cases and invalid inputs manually
+5. Reviewed the public GitHub repo `qxf2/qa-interview-web-application` which confirms the app is seeded with bugs
 
-| ID | Summary | Severity |
-|----|---------|----------|
-| BUG-001 | Negative integers return a result instead of an error | High |
-| BUG-002 | Validation errors return HTTP 200 instead of 400 | Medium |
-| BUG-004 | Missing parameter returns no clear error | Low |
-| BUG-005 | GET / PUT / DELETE not rejected with 405 | Low |
+### Contract Analysis
+The HTML validation logic:
+```javascript
+if (number != parseInt(number, 10)) {
+    // reject — show "Please enter an integer"
+} else {
+    // call the API
+}
+```
+This uses JavaScript's loose `!=` comparison which coerces types — meaning `+5`, `-5`, `05` all pass validation and reach the API.
+
+
 
 ### ⚠️ Open Finding — Undocumented Input Limit
 
-During exploration, the server was found to crash for large inputs:
-
-| Input | HTTP Status | Result |
-|-------|-------------|--------|
+| Input | HTTP Status | Result                |
+|-------|-------------|-----------------------|
 | `991` | 200 ✅ | Correct large integer |
-| `992` | 500 ❌ | Server crash |
+| `992` | 500 ❌ | Server crash          |
 
-The API contract does not define a maximum input value. HTTP 500 is never acceptable — the server must either compute the result or return a graceful `400` with a clear message.
+The API has no documented maximum input value. HTTP 500 is never acceptable.
 
-> **Open question to API owner:** Is there an intended maximum? If so, document it and enforce it with a 400 response instead of a 500 crash.
+### Note on GET /factorial
 
-Tests assert `the response status code should not be 500` rather than `should be 200` — because either a correct result (200) or a graceful rejection (400) would be acceptable.
+`GET /factorial` currently returns HTTP 200 because the server serves the **HTML page** for any
+GET request to that path — it is not rejecting the method at all.
+This is the same HTML page we use during exploration to discover the endpoint contract.
+However the correct behaviour should be `405 Method Not Allowed` since the endpoint
+only accepts `POST` — derived from `type: 'POST'` in the page source.
 
 ---
 
@@ -97,18 +113,14 @@ Tests assert `the response status code should not be 500` rather than `should be
 
 1. `POST` with form body — confirmed by page source
 2. Response field is `answer` — confirmed by `factorial.answer` in page JS
-3. `0! = 1` is expected — mathematically correct
-4. `@bug` scenarios fail intentionally — they document known defects
-5. No authentication required
-6. Tests run against the live site — internet access needed
+3. `0! = 1` is mathematically correct and expected
+4. No authentication required
+5. `+5` is accepted by the contract — `parseInt("+5", 10)` returns `5` and `"+5" != 5` is `false` due to loose comparison
 
 ---
 
 ## What I Would Add Given More Time
 
-- Response time assertion — `< 3000ms` SLA check
-- Concurrency test — 10 parallel requests for thread safety
-- Security probes — SQL injection, script injection via `number` field
-- WireMock stub — run tests offline in CI
-- Allure report — richer HTML with history trending
-- GitHub Actions — run on every push, publish reports
+- **Performance testing** — I dont have much of the experience in Performance test but give time i would add couple of scenarios
+- **WireMock** — mock server to stub the `/factorial` endpoint so tests run offline without depending on the live site.
+- **Allure report** — richer HTML with history and trends

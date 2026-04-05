@@ -176,8 +176,8 @@ public class FactorialStepDefinitions {
 
     }
 
-    @When("I POST the factorial endpoint with invalid parameter")
-    public void iPOSTTheFactorialEndpointWithInvalidParameter() {
-       response =  apiClient.postWithInvalidParam("num");
+    @When("I POST the factorial with parameter name {string} and value {string}")
+    public void iPostTheFactorialWithParameterNameAndValue(String paramName, String value) {
+        response = apiClient.postWithParamName(paramName, value);
     }
 }

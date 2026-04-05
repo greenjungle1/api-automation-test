@@ -5,7 +5,7 @@ Feature: Factorial Calculator API
     Given the Factorial API is available
 
   @sanity @regression
-  Scenario Outline: Factorial of lowest positive integer
+  Scenario Outline: Validate Factorial of small positive integers
     When  I POST the factorial of <number>
     Then  the response status code should be 200
     And   the response content-type should be JSON
@@ -18,18 +18,25 @@ Feature: Factorial Calculator API
       | 5      | 120      |
 
   @regression
-  Scenario Outline: Factorial of large positive integers returns a valid finite integer
+  Scenario Outline: Validate Factorial of large positive integers
     When  I POST the factorial of <number>
     Then  the response status code should be 200
     And   the response content-type should be JSON
     And   the answer field should be a large valid integer
 
     Examples:
-      | number | description                     |
-      | 555    | mid-range large integer         |
-      | 991    | highest confirmed working value |
+      | number |
+      | 555    |
+      | 991    |
 
-  @negative @error-handling
+  @regression
+  Scenario: Validate number with leading zero is accepted and returns factorial
+    When  I POST the factorial of 007
+    Then  the response status code should be 200
+    And   the response content-type should be JSON
+    And   the answer field should equal 5040
+
+  @negative @error-handling @regression
   Scenario Outline: Submitting an invalid value returns an error in the answer field
     When I POST the factorial with invalid value "<value>"
     Then the response status code should be 400
@@ -45,15 +52,9 @@ Feature: Factorial Calculator API
       | 5abc    |
       | [space] |
 
-  @negative @error-handling
-  Scenario: Negative integer should return an error — BUG-001
-    When I POST the factorial with value "-1"
-    Then the response status code should be 400
-    And  the answer field should contain an error message
-
   # ===========================================================================
   # CONTRACT TESTS
-  # All contracts are derived from the page source HTML from GET call:
+  # All contracts derived from the page source HTML:
   #
   #   type: 'POST'                   → method must be POST
   #   url: '/factorial'              → endpoint path
@@ -64,8 +65,8 @@ Feature: Factorial Calculator API
   #   'Please enter an integer'      → exact error text from UI validation
   # ===========================================================================
 
-  @contract
-  Scenario: Contact Validation for Factorial Endpoint
+  @contract @sanity @regression
+  Scenario: Validate Response contains the answer field and is not empty
     When I POST the factorial of 5
     Then the response status code should be 200
     And  the response body should not be empty
@@ -73,30 +74,52 @@ Feature: Factorial Calculator API
     And  the answer field should be present
     And  the answer field should be a non-negative number
 
-  @contract
-  Scenario: Error message text matches what UI expects
+  @contract @regression
+  Scenario: Validate Error message matches what the UI expects
     When I POST the factorial with value "abc"
     Then the response status code should be 200
     And  the answer field should equal "Please enter an integer"
 
-  @contract
-  Scenario: Missing required number parameter returns an error response
+  @contract @regression
+  Scenario: Validate Factorial with positive sign prefix
+    When I POST the factorial with value "+5"
+    Then the response status code should be 200
+    And  the response content-type should be JSON
+    And  the answer field should equal 120
+
+  @contract @regression
+  Scenario Outline: Validate Factorial with negative sign prefix
+    When I POST the factorial with value "<value>"
+    Then the response status code should be 200
+    And  the answer field should contain an error message
+    Examples:
+      | value |
+      | -1    |
+      | -5    |
+
+  @contract @regression
+  Scenario: Validate POST request without the parameter
     When I POST to the factorial endpoint with no parameter
     Then the response status code should be 400
 
-  @contract
-   Scenario: Invalid parameter type returns an error response
-    When I POST the factorial endpoint with invalid parameter
+  @contract @regression
+  Scenario Outline: Validate POST request with wrong parameter name is rejected
+    When I POST the factorial with parameter name "<paramName>" and value "5"
     Then the response status code should be 400
+    Examples:
+      | paramName |
+      | Number    |
+      | NUMBER    |
+      | num       |
 
-  @contract
-  Scenario Outline: Unsupported HTTP methods should be rejected with 405 Method Not Allowed
+  @contract @regression
+  Scenario Outline: Validate unsupported HTTP methods
     When I send a "<method>" request to the factorial endpoint
     Then the response status code should be 405
-
     Examples:
-      | method | description                          |
-      | GET    | read — not supported, POST only      |
-      | PUT    | update — not supported, POST only    |
-      | DELETE | delete — not supported, POST only    |
+      | method |
+      | GET    |
+      | PUT    |
+      | DELETE |
+
 

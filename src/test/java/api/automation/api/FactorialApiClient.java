@@ -35,6 +35,13 @@ public class FactorialApiClient {
                 .post(ApiConfig.FACTORIAL_ENDPOINT);
     }
 
+    public Response postWithParamName(String paramName, String value) {
+        return given()
+                .spec(SpecBuilder.buildRequestSpec())
+                .formParam(paramName, value)
+                .post(ApiConfig.FACTORIAL_ENDPOINT);
+    }
+
     public Response getFactorial() {
         return given()
                 .spec(SpecBuilder.buildRequestSpec())
