@@ -97,12 +97,12 @@ Feature: Factorial Calculator API
   Scenario Outline: Validate Factorial with negative sign prefix
     When I POST the factorial with value "<value>"
     Then the response status code should be 200
-    And  the answer field should contain an error message
+    And  the answer field should equal <expected>
 
     Examples:
-      | value |
-      | -1    |
-      | -5    |
+      | value | expected |
+      | -1    | 1        |
+      | -5    | 120      |
 
   @contract @regression
   Scenario: Validate POST request without the parameter
